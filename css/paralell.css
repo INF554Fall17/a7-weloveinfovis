@@ -2,16 +2,17 @@
   display: block;
 }
 
-.parcoords svg {
-    width: 100%;
-    font-size: 10px;
+.parcoords svg{
+  font: 10px sans-serif;
   position: absolute;
 }
 
 .parcoords canvas {
   opacity: 0.9;
   pointer-events: none;
+  position: relative;
 }
+
 
 .axis .title {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -70,6 +71,7 @@ font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   stroke: #fff;
   stroke-width: 1px;
 }
+
 tbody {
     font-size: 10px;
     background-color: #ddd;

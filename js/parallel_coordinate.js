@@ -102,7 +102,7 @@ var axes = svg_p.selectAll(".axis")
     .attr("class", function(d) { return "axis " + d.key.replace(/ /g, "_"); })
     .attr("transform", function(d,i) { return "translate(" + xscale(i) + ")"; });
 
-d3.csv("../data/degrees-that-pay-back.csv",
+d3.csv("data/degrees-that-pay-back.csv",
        function(d,i,columns){
        
            delete d["Starting Median Salary"];

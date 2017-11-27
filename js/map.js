@@ -12,15 +12,19 @@ var w = 1250,
     h2 = 150;
 var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 var svg_3 = d3.select('#div-geo').append('svg')
-    .attr('width', w)
-    .attr('height', h)
+//    .attr('width', w)
+//    .attr('height', h)
+    .attr('preserveAspectRatio',"xMinYMin meet")
+    .attr('viewBox',"0 0 1250 600")
 var projection = d3.geoAlbersUsa()
     .scale([1200])
     .translate([w / 2, h / 2])
 var svg2_3 = d3.select('#div-barchart').append('svg')
     .attr('id', 'barchart')
-    .attr('width', w + 20)
-    .attr('height', h2 + 40)
+//    .attr('width', w + 20)
+//    .attr('height', h2 + 40)
+    .attr('preserveAspectRatio',"xMinYMin meet")
+    .attr('viewBox',"0 0 900 600")
 svg2_3.append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", 0)
@@ -51,7 +55,7 @@ function bars(data) {
     var div = d3.select("body").append("div").attr("class", "toolTip");
     d3.select('#axis').call(d3.axisBottom(x));
 
-    d3.select('#barchart').attr('width', Math.max(w + 20, 50 * data.length))
+    //d3.select('#barchart').attr('width', Math.max(w + 20, 50 * data.length))
     d3.select('#rank')
     .transition().duration(1000).attr('x', 50 * data.length / 2 + 50)
 
@@ -103,7 +107,7 @@ function bars(data) {
 
 
 }
-d3.json("/data/usa2.json", function(error, world) {
+d3.json("data/usa2.json", function(error, world) {
     svg_3.append('path')
         .attr('class', 'graticule')
         .attr('d', path);
@@ -118,7 +122,7 @@ d3.json("/data/usa2.json", function(error, world) {
         })
         .attr('stroke', 'black')
         .attr('d', path);
-    d3.csv("/data/salaries.csv", function(error, data) {
+    d3.csv("data/salaries.csv", function(error, data) {
         var state_map = {}
         var region_map = {}
         var state_data = d3.nest()
@@ -180,7 +184,7 @@ d3.json("/data/usa2.json", function(error, world) {
                         d['color'] = 'rgb(' + (res - 100) + ',' + res + ', ' + res + ')'
                         return 'black'
                     })
-                    .on("click", function(d) {
+                    .on("click touchstart", function(d) {
                         for (i = 0; i < avg_data.length; i++) {
                             d3.select('#' + avg_data[i]['key'])
                                 .style('fill', function(d) { return d['color'] })
@@ -233,7 +237,7 @@ d3.json("/data/usa2.json", function(error, world) {
                         return 'black'
                     })
                     .style('fill', 'grey')
-                    .on("click", function(d) {
+                    .on("click touchstart", function(d) {
                         for (i = 0; i < region_avg_data.length; i++) {
                             d3.selectAll('.' + region_avg_data[i]['key'])
                                 .style('fill', 'grey')
@@ -312,8 +316,7 @@ d3.json("/data/usa2.json", function(error, world) {
             // .attr("x", w- 100)
             .attr("dy", "1em")
             .style("text-anchor", "middle")
-            .attr('transform', 'translate(820, 470) rotate(' + 90 + ')')
-            .text("Country");
+            .attr('transform', 'translate(820, 470) rotate(' + 90 + ')');
         var g = svg_3.append('g').attr('id','map_legend');
           var myScale = d3.scaleLinear()
                           .domain([0, 10])

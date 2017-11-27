@@ -1,7 +1,7 @@
 var svg = d3.select("svg#svg_1"),
   margin = {top: 50, right: 20, bottom: 200, left: 60},
-  width = +svg.attr("width") - margin.left - margin.right,
-  height = +svg.attr("height") - margin.top - margin.bottom,
+  width = 900 - margin.left - margin.right,
+  height = 500 - margin.top - margin.bottom,
   g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
@@ -19,7 +19,7 @@ var color = d3.scaleOrdinal()
 
 var grouped = false;
 
-d3.csv("../data/degrees-that-pay-back.csv", function (d , i, columns){
+d3.csv("data/degrees-that-pay-back.csv", function (d , i, columns){
     d.major = d[columns[0]];
     d.start = parseInt(d[columns[1]]);
     d.mid = parseInt(d[columns[2]]);
