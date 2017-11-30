@@ -10,7 +10,6 @@
 .parcoords canvas {
   opacity: 0.9;
   pointer-events: none;
-  position: relative;
 }
 
 
@@ -108,6 +107,7 @@ td {
     padding: 20px;
 }
 #chart2 {
+    align-content: center;
     padding: 25px;
 }
 
